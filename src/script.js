@@ -29,6 +29,7 @@ const renderer = new THREE.WebGLRenderer({canvas});
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setSize(viewport.width, viewport.height);
+renderer.setPixelRatio(Math.min(2, window.devicePixelRatio)); // check Mobile
 
 const scene = new THREE.Scene();
 
@@ -166,3 +167,13 @@ window.addEventListener('resize', () => {
 });
 
 tick();
+
+// Extras
+// Mipmapping / Textures
+// default is: THREE.LinearMipMapLinearFilter
+
+// cubeColorTexture.magFilter = THREE.NearestFilter; // this allows for Minecrafty results;
+// Great when using low-res textures on big meshes.
+
+// IF WE ARE USING NearestFilter on minFilter -> do: cubeColorTexture.generateMipmaps = false;
+// boosts Performances.
